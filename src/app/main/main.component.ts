@@ -36,9 +36,17 @@ export class MainComponent implements OnInit {
     }
   }
 
+  public async fetchDatabaseBlob() {
+    try {
+      console.log(await Database.fetchDatabaseBlob());
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   public async updateDatabaseArrayBuffer() {
     try {
-      console.log(await Database.updateDatabaseArrayBuffer());
+      console.log(await Database.updateDatabaseArrayBuffer(await Database.fetchDatabaseBlob()));
     } catch (err) {
       console.log(err);
     }

@@ -33,9 +33,12 @@ export class Database {
     return await localForage.setItem('VERSION', version);
   }
 
-  static async updateDatabaseArrayBuffer(): Promise<ArrayBuffer> {
+  static async fetchDatabaseBlob(): Promise<Blob> {
+    return await (await fetch(this.DB_SRC)).blob();
+  }
+
+  static async updateDatabaseArrayBuffer(blob: Blob): Promise<ArrayBuffer> {
     try {
-      const blob = await (await fetch(this.DB_SRC)).blob();
       const zipFileBlob = new BlobReader(blob);
       const zipReader = new ZipReader(zipFileBlob);
       const entries = await zipReader.getEntries();
@@ -74,7 +77,7 @@ export class Database {
       const latestRevision: number = await this.checkLatestRevision();
       if (latestRevision != await this.getLocalRevision()) {
         await this.updateLocalRevision(latestRevision);
-        return await this.getDatabaseInstance(await this.updateDatabaseArrayBuffer());
+        return await this.getDatabaseInstance(await this.updateDatabaseArrayBuffer(await this.fetchDatabaseBlob()));
       }
       return await this.getDatabaseInstance(await this.getDatabaseArrayBuffer());
     } catch (_err) {
