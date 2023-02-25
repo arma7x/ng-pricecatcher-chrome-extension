@@ -44,25 +44,25 @@ export class MainComponent implements OnInit {
     }
   }
 
-  public async updateDatabaseArrayBuffer() {
+  public async updateLocalDatabaseArrayBuffer() {
     try {
-      console.log(await Database.updateDatabaseArrayBuffer(await Database.fetchDatabaseBlob()));
+      console.log(await Database.updateLocalDatabaseArrayBuffer(await Database.fetchDatabaseBlob()));
     } catch (err) {
       console.log(err);
     }
   }
 
-  public async getDatabaseArrayBuffer() {
+  public async getLocalDatabaseArrayBuffer() {
     try {
-      console.log(await Database.getDatabaseArrayBuffer());
+      console.log(await Database.getLocalDatabaseArrayBuffer());
     } catch (err) {
       console.log(err);
     }
   }
 
-  public async getDatabaseInstance() {
+  public async getDatabaseSQLInstance() {
     try {
-      const db = await Database.getDatabaseInstance(await Database.getDatabaseArrayBuffer());
+      const db = await Database.getDatabaseSQLInstance(await Database.getLocalDatabaseArrayBuffer());
       const items = db.exec("SELECT * from items;");
       console.log(items);
     } catch (err) {

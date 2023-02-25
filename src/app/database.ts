@@ -37,7 +37,7 @@ export class Database {
     return await (await fetch(this.DB_SRC)).blob();
   }
 
-  static async updateDatabaseArrayBuffer(blob: Blob): Promise<ArrayBuffer> {
+  static async updateLocalDatabaseArrayBuffer(blob: Blob): Promise<ArrayBuffer> {
     try {
       const zipFileBlob = new BlobReader(blob);
       const zipReader = new ZipReader(zipFileBlob);
@@ -59,7 +59,7 @@ export class Database {
     }
   }
 
-  static async getDatabaseArrayBuffer(): Promise<ArrayBuffer> {
+  static async getLocalDatabaseArrayBuffer(): Promise<ArrayBuffer> {
     const buffer: ArrayBuffer | null = await localForage.getItem('DATABASE');
     if (buffer == null) {
       throw("Null buffer");
@@ -67,7 +67,7 @@ export class Database {
     return buffer;
   }
 
-  static async getDatabaseInstance(buffer: ArrayBuffer): Promise<any> {
+  static async getDatabaseSQLInstance(buffer: ArrayBuffer): Promise<any> {
     const SQL = await initSqlJs();
     return new SQL.Database(new Uint8Array(buffer));
   }
@@ -77,12 +77,12 @@ export class Database {
       const latestRevision: number = await this.checkLatestRevision();
       if (latestRevision != await this.getLocalRevision()) {
         await this.updateLocalRevision(latestRevision);
-        return await this.getDatabaseInstance(await this.updateDatabaseArrayBuffer(await this.fetchDatabaseBlob()));
+        return await this.getDatabaseSQLInstance(await this.updateLocalDatabaseArrayBuffer(await this.fetchDatabaseBlob()));
       }
-      return await this.getDatabaseInstance(await this.getDatabaseArrayBuffer());
+      return await this.getDatabaseSQLInstance(await this.getLocalDatabaseArrayBuffer());
     } catch (_err) {
       try {
-        return await this.getDatabaseInstance(await this.getDatabaseArrayBuffer());
+        return await this.getDatabaseSQLInstance(await this.getLocalDatabaseArrayBuffer());
       } catch (err) {
         Promise.reject(err);
       }
