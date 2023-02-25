@@ -15,10 +15,10 @@ export class Database {
       if (headerResponse.headers.has('content-length')) {
         return Promise.resolve(parseInt(headerResponse.headers.get('content-length') || '0'));
       }
+      return Promise.reject('content-length header is missing');
     } catch (err) {
       return Promise.reject(err);
     }
-    return Promise.reject('Unknown Error');
   }
 
   static async getLocalRevision(): Promise<number> {
@@ -48,21 +48,24 @@ export class Database {
       for (let i in entries) {
         if (entries[i]['filename'] == '/pricecatcher.db') {
           entry = entries[i];
+          break;
         }
       }
-      if (entry != null)
+      if (entry == null)
+        return Promise.reject("Invalid archive file: ${DB_SRC}");
+      else
         await entry.getData(fileStream.writable);
       await zipReader.close();
       return await localForage.setItem('DATABASE', await (await filePromise).arrayBuffer());
     } catch (err) {
-      throw(err);
+      return Promise.reject(err);
     }
   }
 
   static async getLocalDatabaseArrayBuffer(): Promise<ArrayBuffer> {
     const buffer: ArrayBuffer | null = await localForage.getItem('DATABASE');
     if (buffer == null) {
-      throw("Null buffer");
+      return Promise.reject("Buffer is null");
     }
     return buffer;
   }
@@ -84,7 +87,7 @@ export class Database {
       try {
         return await this.getDatabaseSQLInstance(await this.getLocalDatabaseArrayBuffer());
       } catch (err) {
-        Promise.reject(err);
+        return Promise.reject(err);
       }
     }
   }
