@@ -1,6 +1,5 @@
 import * as localForage from "localforage";
 import { BlobReader, ZipReader } from "@zip.js/zip.js";
-
 import initSqlJs from "sql.js/dist/sql-asm.js";
 
 localForage.setDriver(localForage.INDEXEDDB);

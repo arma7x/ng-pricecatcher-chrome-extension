@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Database } from '../database';
 import { DatabaseService } from '../database.service';
 
 @Component({
@@ -20,65 +19,7 @@ export class MainComponent implements OnInit {
     });
   }
 
-  public async checkLatestRevision() {
-    try {
-      console.log(await Database.checkLatestRevision());
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  public async getLocalRevision() {
-    try {
-      console.log(await Database.getLocalRevision());
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  public async updateLocalRevision() {
-    try {
-      console.log(await Database.updateLocalRevision(await Database.checkLatestRevision()));
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  public async fetchDatabaseBlob() {
-    try {
-      console.log(await Database.fetchDatabaseBlob());
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  public async updateLocalDatabaseArrayBuffer() {
-    try {
-      console.log(await Database.updateLocalDatabaseArrayBuffer(await Database.fetchDatabaseBlob()));
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  public async getLocalDatabaseArrayBuffer() {
-    try {
-      console.log(await Database.getLocalDatabaseArrayBuffer());
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  public async getDatabaseSQLInstance() {
-    try {
-      const db = await Database.getDatabaseSQLInstance(await Database.getLocalDatabaseArrayBuffer());
-      const items = db.exec("SELECT * from items;");
-      console.log(items);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  public async init() {
+  public async getItems() {
     try {
       const db = await this.database.sqlInstance;
       const items = db.exec("SELECT * from items;");
