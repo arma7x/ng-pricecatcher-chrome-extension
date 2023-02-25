@@ -5,10 +5,7 @@
   "manifest_version": 3,
   "permissions": [
       "tabs",
-      "activeTab",
-      "webNavigation",
-      "storage",
-      "scripting"
+      "activeTab"
   ],
   "background": {
     "service_worker": "background.js",
@@ -18,7 +15,6 @@
       "default_popup": "index.html"
   },
   "host_permissions": [
-    "https://github.com/",
     "https://raw.githubusercontent.com/"
   ]
 }

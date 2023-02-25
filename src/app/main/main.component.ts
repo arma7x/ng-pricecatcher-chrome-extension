@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Database } from '../database';
 
 @Component({
@@ -8,9 +9,15 @@ import { Database } from '../database';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    chrome.runtime.onMessage.addListener((evt) => {
+      if (evt.type != null && evt.type == "ROUTE" && evt.path != null) {
+        this.router.navigate([evt.path]);
+      }
+    });
+  }
 
   public async checkLatestRevision() {
     try {
