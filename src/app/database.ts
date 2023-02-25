@@ -52,7 +52,7 @@ export class Database {
         }
       }
       if (entry == null)
-        return Promise.reject(`Invalid archive file: ${DB_SRC}`);
+        return Promise.reject(`Invalid archive file: ${this.DB_SRC}`);
       else
         await entry.getData(fileStream.writable);
       await zipReader.close();

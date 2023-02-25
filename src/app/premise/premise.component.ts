@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-premise',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class PremiseComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private database: DatabaseService) { }
 
   ngOnInit(): void {
     chrome.runtime.onMessage.addListener((evt) => {

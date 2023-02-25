@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Database } from '../database';
+import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-main',
@@ -9,7 +10,7 @@ import { Database } from '../database';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private database: DatabaseService) { }
 
   ngOnInit(): void {
     chrome.runtime.onMessage.addListener((evt) => {
@@ -79,7 +80,7 @@ export class MainComponent implements OnInit {
 
   public async init() {
     try {
-      const db = await Database.init();
+      const db = await this.database.sqlInstance;
       const items = db.exec("SELECT * from items;");
       console.log(items);
     } catch (err) {

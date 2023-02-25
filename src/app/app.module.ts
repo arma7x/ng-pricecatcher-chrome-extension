@@ -7,6 +7,8 @@ import { PopupComponent } from './popup/popup.component';
 import { MainComponent } from './main/main.component';
 import { PremiseComponent } from './premise/premise.component';
 
+import { DatabaseService } from './database.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,7 @@ import { PremiseComponent } from './premise/premise.component';
       { path: 'premise', component: PremiseComponent },
     ], { useHash: true })
   ],
-  providers: [],
+  providers: [DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
