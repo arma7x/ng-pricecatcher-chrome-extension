@@ -6,10 +6,10 @@ import { Database } from './database';
 })
 export class DatabaseService {
 
-  sqlInstance: any | null;
+  instance: any | null;
 
   constructor() {
-    this.sqlInstance = Database;
+    this.instance = Database;
   }
 
 }

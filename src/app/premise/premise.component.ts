@@ -21,7 +21,7 @@ export class PremiseComponent implements OnInit {
 
   public async getPremises() {
     try {
-      const db = await this.database.sqlInstance.init();
+      const db = await this.database.instance.init();
       const premises = db.exec("SELECT * from premises;");
       console.log(premises);
     } catch (err) {

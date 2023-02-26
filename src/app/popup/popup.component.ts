@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-popup',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopupComponent implements OnInit {
 
-  constructor() { }
+  latestRevision: number = 0;
+  localRevision: number = 0;
 
-  ngOnInit(): void {}
+  constructor(private database: DatabaseService) { }
+
+  ngOnInit(): void {
+    this.run();
+  }
+
+  async run() {
+    try {
+      this.localRevision = await this.database.instance.getLocalRevision();
+      this.latestRevision = await this.database.instance.checkLatestRevision();
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   public openPage(path: string = 'main') {
     const mainUrl = chrome.runtime.getURL('index.html');

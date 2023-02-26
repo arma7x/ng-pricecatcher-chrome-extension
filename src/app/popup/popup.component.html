@@ -1,7 +1,14 @@
-<p>popup works!</p>
-<div>
-  <button (click)="openPage('main')">Open Main</button>
-</div>
-<div>
-  <button (click)="openPage('premise')">Open Premise</button>
+<div class="container">
+  <div class="row ">
+    <div>Local Database Revision:</div>
+    <div>{{ localRevision }}</div>
+  </div>
+  <div class="row mt-5">
+    <div>Latest Database Revision:</div>
+    <div>{{ latestRevision }}</div>
+  </div>
+  <div class="row mt-5">
+    <button class="button" (click)="openPage('main')">PriceCatcher</button>
+    <button class="button" (click)="openPage('premise')">Senarai Premise</button>
+  </div>
 </div>
