@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { PopupComponent } from './popup/popup.component';
-import { MainComponent } from './main/main.component';
+import { PriceCatcherComponent } from './pricecatcher/pricecatcher.component';
 import { PremiseComponent } from './premise/premise.component';
 
 import { DatabaseService } from './database.service';
@@ -13,14 +13,14 @@ import { DatabaseService } from './database.service';
   declarations: [
     AppComponent,
     PopupComponent,
-    MainComponent,
+    PriceCatcherComponent,
     PremiseComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       { path: '', component: PopupComponent },
-      { path: 'main', component: MainComponent },
+      { path: 'pricecatcher', component: PriceCatcherComponent },
       { path: 'premise', component: PremiseComponent },
     ], { useHash: true })
   ],

@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { DatabaseService } from '../database.service';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  selector: 'app-pricecatcher',
+  templateUrl: './pricecatcher.component.html',
+  styleUrls: ['./pricecatcher.component.scss']
 })
-export class MainComponent implements OnInit {
+export class PriceCatcherComponent implements OnInit {
 
   itemGroup: Array<string> = [];
   itemCategory: Array<string> = [];
