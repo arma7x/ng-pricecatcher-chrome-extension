@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../database.service';
 
@@ -13,12 +13,14 @@ export class MainComponent implements OnInit {
   itemCategory: Array<string> = [];
   statesTree: { [key: string]: { [key: string]: Array<string>; }; } = {};
 
-  constructor(private router: Router, private database: DatabaseService) { }
+  constructor(private zone: NgZone, private router: Router, private database: DatabaseService) { }
 
   ngOnInit(): void {
     chrome.runtime.onMessage.addListener((evt) => {
       if (evt.type != null && evt.type == "ROUTE" && evt.path != null) {
-        this.router.navigate([evt.path]);
+        this.zone.run(() => {
+          this.router.navigate([evt.path]);
+        });
       }
     });
   }
