@@ -10,7 +10,8 @@ export class Database {
 
   static async checkLatestRevision(): Promise<number> {
     try {
-      const headerResponse: Response = await fetch(this.DB_SRC, { method: 'HEAD' });
+      let url = `${this.DB_SRC}?time=${new Date().getTime()}`;
+      const headerResponse: Response = await fetch(url, { method: 'HEAD' });
       if (headerResponse.headers.has('content-length')) {
         return Promise.resolve(parseInt(headerResponse.headers.get('content-length') || '0'));
       }
@@ -33,7 +34,8 @@ export class Database {
   }
 
   static async fetchDatabaseBlob(): Promise<Blob> {
-    return await (await fetch(this.DB_SRC)).blob();
+    let url = `${this.DB_SRC}?time=${new Date().getTime()}`;
+    return await (await fetch(url)).blob();
   }
 
   static async updateLocalDatabaseArrayBuffer(blob: Blob): Promise<ArrayBuffer> {
