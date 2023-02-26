@@ -6,10 +6,10 @@ import { Database } from './database';
 })
 export class DatabaseService {
 
-  sqlInstance: Promise<any> | null;
+  sqlInstance: any | null;
 
   constructor() {
-    this.sqlInstance = Database.init();
+    this.sqlInstance = Database;
   }
 
 }

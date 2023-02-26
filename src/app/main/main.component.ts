@@ -21,7 +21,7 @@ export class MainComponent implements OnInit {
 
   public async getItems() {
     try {
-      const db = await this.database.sqlInstance;
+      const db = await this.database.sqlInstance.init();
       const items = db.exec("SELECT * from items;");
       console.log(items);
     } catch (err) {
