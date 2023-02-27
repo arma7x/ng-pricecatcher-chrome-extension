@@ -34,6 +34,7 @@ export class PriceCatcherModalComponent implements OnInit {
   public hideModal() {
     this.visibility = false;
     this.item = null;
+    this.priceList = [];
   }
 
   onChangeState(evt: EventTarget | null): void {

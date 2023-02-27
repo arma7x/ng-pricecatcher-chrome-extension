@@ -1,3 +1,5 @@
+@use '../base';
+
 .modal {
   width: 100vw;
   height: 100vh;
@@ -5,14 +7,25 @@
   background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
-  overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 
   .body {
+    margin-top: 20px;
+    max-width: 90vw;
+    max-height: 90vh;
     background-color: #ffffff;
+    overflow-y: scroll;
     padding: 5px;
+  }
+
+  form {
+    position: absolute;
+  }
+
+  table {
+    margin-top: 20px;
   }
 }
 
