@@ -1,0 +1,19 @@
+<form class="row" [formGroup]="groupCategoryForm" (ngSubmit)="onSubmit.emit({ item_group: groupCategoryForm.value.item_group, item_category: groupCategoryForm.value.item_category })">
+
+  <div>
+    <select id="item_group" formControlName="item_group">
+      <option value="">Pilih Kumpulan</option>
+      <option *ngFor="let value of itemGroup" [ngValue]="value">{{ value }}</option>
+    </select>
+  </div>
+
+  <div>
+    <select id="item_category" formControlName="item_category">
+      <option value="">Pilih Kategori</option>
+      <option *ngFor="let value of itemCategory" [ngValue]="value">{{ value }}</option>
+    </select>
+  </div>
+
+  <button class="button" type="submit">Submit</button>
+
+</form>

@@ -1,4 +1,8 @@
-<p>pricecatcher works!</p>
+<app-group-category-form [itemGroup]="itemGroup" [itemCategory]="itemCategory" (onSubmit)="filterItems($event)"></app-group-category-form>
 <div>
-  <button (click)="getItems()">Test get items</button>
+  <div *ngFor="let item of items">
+    {{ item.item_code }} - {{ item.item }} - {{ item.unit }} - {{ item.item_group }} - {{ item.item_category }}
+    <button type="button" (click)="showPriceList(item)">Senarai Harga</button>
+  </div>
 </div>
+<app-price-catcher-modal #refPriceCatcherModal [statesTree]="statesTree" [db]="db"></app-price-catcher-modal>
