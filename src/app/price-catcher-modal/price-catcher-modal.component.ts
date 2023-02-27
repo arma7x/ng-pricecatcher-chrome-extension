@@ -46,7 +46,12 @@ export class PriceCatcherModalComponent implements OnInit {
     this.statesTreeForm.controls['premise_type'].setValue('');
   }
 
-  getPriceList(): void {
+  stopPropagation(evt: any) {
+    evt.stopPropagation();
+  }
+
+  getPriceList(evt: any): void {
+    this.stopPropagation(evt);
     if (this.item == null)
       return;
     let item_code = this.item.item_code;

@@ -1,7 +1,7 @@
 <div>
-  <div class="modal" *ngIf="visibility">
-    <div class="body">
-      <form class="row" [formGroup]="statesTreeForm" (ngSubmit)="getPriceList()">
+  <div class="modal" *ngIf="visibility" (click)="hideModal()">
+    <div class="body" (click)="stopPropagation($event)">
+      <form class="row" [formGroup]="statesTreeForm" (ngSubmit)="getPriceList($event)">
 
         <div>
           <select id="state" formControlName="state" (change)="onChangeState($event.target)">
@@ -25,7 +25,6 @@
         </div>
 
         <button class="button" type="submit">Submit</button>
-        <button class="button" (click)="hideModal()">Tutup</button>
 
       </form>
 
