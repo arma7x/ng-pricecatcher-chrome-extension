@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ItemRow, PriceRow } from '../types';
 
 @Component({
   selector: 'app-price-catcher-modal',
@@ -10,7 +11,8 @@ export class PriceCatcherModalComponent implements OnInit {
 
   @Input() db: any;
   @Input() statesTree: { [key: string]: { [key: string]: Array<string>; }; } = {};
-  item: any;
+  item!: ItemRow | null;
+  priceList: Array<PriceRow> = [];
   visibility: boolean = false;
 
   statesTreeForm = this.formBuilder.group({
@@ -24,7 +26,7 @@ export class PriceCatcherModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public showModal(item: any) {
+  public showModal(item: ItemRow) {
     this.item = item;
     this.visibility = true;
   }
@@ -64,8 +66,21 @@ export class PriceCatcherModalComponent implements OnInit {
     }
     let order_stmt = "ORDER BY prices.price ASC";
     const result = this.db.exec([select_stmt, join_stmt.join(" "), where_stmt.join(" AND "), order_stmt].join(' '));
-    console.log();
-    console.log(this.item, result[0].values);
+
+    this.priceList = [];
+    let tempPriceList: Array<PriceRow> = [];
+    if (result.length > 0) {
+      result[0].values.forEach((row: any[]) => {
+        let temp: { [key: string]: any } = {};
+        result[0].columns.forEach((key: any, index: number) => {
+          temp[key] = row[index];
+        });
+        tempPriceList.push(temp as PriceRow);
+      });
+    }
+    this.priceList = [...tempPriceList];
+
+    console.log(this.priceList);
   }
 
 }

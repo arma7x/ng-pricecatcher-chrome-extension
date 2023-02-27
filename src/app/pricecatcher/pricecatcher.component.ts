@@ -1,19 +1,7 @@
 import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../database.service';
-
-interface SubmitFormEvent {
-  item_group: string,
-  item_category: string,
-}
-
-interface ItemRow {
-  item_code: number,
-  item: string,
-  unit: string,
-  item_group: string,
-  item_category: string,
-}
+import { SubmitGroupCategoryFormEvent, ItemRow } from '../types';
 
 @Component({
   selector: 'app-pricecatcher',
@@ -46,7 +34,7 @@ export class PriceCatcherComponent implements OnInit {
     this.refPriceCatcherModal.showModal(item);
   }
 
-  filterItems(evt: SubmitFormEvent): void {
+  filterItems(evt: SubmitGroupCategoryFormEvent): void {
     let select_stmt = "SELECT * FROM items";
     let where_stmt = ["WHERE NOT item_code=-1"];
     if (evt.item_group != null && evt.item_group != "") {
