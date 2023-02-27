@@ -1,8 +1,26 @@
 <app-group-category-form [itemGroup]="itemGroup" [itemCategory]="itemCategory" (onSubmit)="filterItems($event)"></app-group-category-form>
 <div>
-  <div *ngFor="let item of items">
-    {{ item.item_code }} - {{ item.item }} - {{ item.unit }} - {{ item.item_group }} - {{ item.item_category }}
-    <button type="button" (click)="showPriceList(item)">Senarai Harga</button>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Kod Item</th>
+        <th>Nama</th>
+        <th>Unit</th>
+        <th>Kumpulan</th>
+        <th>Kategori</th>
+        <th>Menu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.item_code }}</td>
+        <td>{{ item.item }}</td>
+        <td>{{ item.unit }}</td>
+        <td>{{ item.item_group }}</td>
+        <td>{{ item.item_category }}</td>
+        <td><button type="button" (click)="showPriceList(item)">Senarai Harga</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <app-price-catcher-modal #refPriceCatcherModal [statesTree]="statesTree" [db]="db"></app-price-catcher-modal>
