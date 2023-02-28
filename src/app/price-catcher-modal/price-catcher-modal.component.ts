@@ -23,12 +23,14 @@ export class PriceCatcherModalComponent implements OnInit {
   public showModal(item: ItemRow) {
     this.item = item;
     this.visibility = true;
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
   }
 
   public hideModal() {
     this.visibility = false;
     this.item = null;
     this.priceList = [];
+    document.getElementsByTagName('body')[0].style.overflow = 'auto';
   }
 
   stopPropagation(evt: any) {

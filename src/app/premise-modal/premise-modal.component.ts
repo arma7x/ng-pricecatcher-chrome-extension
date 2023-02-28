@@ -24,12 +24,14 @@ export class PremiseModalComponent implements OnInit {
   public showModal(premise: PremiseRow) {
     this.premise = premise;
     this.visibility = true;
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
   }
 
   public hideModal() {
     this.visibility = false;
     this.premise = null;
     this.productList = [];
+    document.getElementsByTagName('body')[0].style.overflow = 'auto';
   }
 
   stopPropagation(evt: any) {
