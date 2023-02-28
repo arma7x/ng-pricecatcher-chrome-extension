@@ -20,7 +20,7 @@
         <tbody>
           <tr *ngFor="let row of priceList">
             <td>{{ row.premise_code }}</td>
-            <td>{{ row.premise_type }}, {{ row.premise }}<br>{{ row.district }}, {{ row.state }}</td>
+            <td>{{ row.premise }}<br>{{ row.premise_type }}<br>{{ row.district }}, {{ row.state }}</td>
             <td>{{ row.address }}</td>
             <td>RM{{ row.price.toFixed(2) }}</td>
             <td>{{ row.last_update }}</td>
