@@ -36,3 +36,13 @@ export interface PremiseRow {
   state: string,
   district: string,
 }
+
+export interface ProductRow {
+  item_code: number,
+  item: string,
+  unit: string,
+  item_group: string,
+  item_category: string,
+  last_update: string,
+  price: number,
+}

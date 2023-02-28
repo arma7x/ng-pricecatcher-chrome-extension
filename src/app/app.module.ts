@@ -10,6 +10,7 @@ import { PremiseComponent } from './premise/premise.component';
 
 import { DatabaseService } from './database.service';
 import { PriceCatcherModalComponent } from './price-catcher-modal/price-catcher-modal.component';
+import { PremiseModalComponent } from './premise-modal/premise-modal.component';
 import { GroupCategoryFormComponent } from './widgets/group-category-form/group-category-form.component';
 import { RegionTreeFormComponent } from './widgets/region-tree-form/region-tree-form.component';
 
@@ -21,7 +22,8 @@ import { RegionTreeFormComponent } from './widgets/region-tree-form/region-tree-
     PremiseComponent,
     PriceCatcherModalComponent,
     GroupCategoryFormComponent,
-    RegionTreeFormComponent
+    RegionTreeFormComponent,
+    PremiseModalComponent
   ],
   imports: [
     BrowserModule,

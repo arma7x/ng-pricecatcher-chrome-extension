@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../database.service';
 import { SubmitRegionTreeFormEvent, PremiseRow } from '../types';
@@ -15,6 +15,7 @@ export class PremiseComponent implements OnInit {
   itemGroup: Array<string> = [];
   itemCategory: Array<string> = [];
   regionTree: { [key: string]: { [key: string]: Array<string>; }; } = {};
+  @ViewChild('refPremiseModal') refPremiseModal: any;
 
   constructor(private zone: NgZone, private router: Router, private database: DatabaseService) { }
 
@@ -30,7 +31,7 @@ export class PremiseComponent implements OnInit {
   }
 
   showItemList(premise: PremiseRow) {
-    console.log(premise);
+    this.refPremiseModal.showModal(premise);
   }
 
   async getPremises(evt: SubmitRegionTreeFormEvent) {

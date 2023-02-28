@@ -1,0 +1,36 @@
+<div>
+  <div class="modal" *ngIf="visibility" (click)="hideModal()">
+    <div class="content" (click)="stopPropagation($event)">
+
+      <div class="form-container">
+        <app-group-category-form [itemGroup]="itemGroup" [itemCategory]="itemCategory" (onSubmit)="getProductList($event)"></app-group-category-form>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Kod Item</th>
+            <th>Nama</th>
+            <th>Unit</th>
+            <th>Kumpulan</th>
+            <th>Kategori</th>
+            <th>Harga</th>
+            <th>Kemaskini</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of productList">
+            <td>{{ product.item_code }}</td>
+            <td>{{ product.item }}</td>
+            <td>{{ product.unit }}</td>
+            <td>{{ product.item_group }}</td>
+            <td>{{ product.item_category }}</td>
+            <td>RM{{ product.price.toFixed(2) }}</td>
+            <td>{{ product.last_update }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+.modal {
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    max-width: 90vw;
+    max-height: 90vh;
+    background-color: #ffffff;
+    overflow-y: auto;
+
+    .form-container {
+      position: absolute;
+      height: 40px;
+      background-color: #ffffff;
+      width: calc(88vw - 10px);
+      padding: 5px;
+    }
+
+    table {
+      margin: 5px;
+      margin-top: 45px;
+      width: calc(88vw - 10px);
+    }
+
+    table th {
+      position: sticky;
+      top: 40px;
+      margin-top: 45px;
+    }
+
+  }
+}
