@@ -4,7 +4,7 @@
 
       <div class="form-container">
         <app-group-category-form [itemGroup]="itemGroup" [itemCategory]="itemCategory" (onSubmit)="getProductList($event)"></app-group-category-form>
-        <div *ngIf="premise != null">{{ premise.premise }}</div>
+        <div class="ml-5" *ngIf="premise != null">{{ premise.premise }}</div>
       </div>
 
       <table>

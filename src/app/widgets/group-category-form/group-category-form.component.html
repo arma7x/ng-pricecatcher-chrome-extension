@@ -7,13 +7,13 @@
     </select>
   </div>
 
-  <div>
+  <div class="ml-5">
     <select id="item_category" formControlName="item_category">
       <option value="">Pilih Kategori</option>
       <option *ngFor="let value of itemCategory" [ngValue]="value">{{ value }}</option>
     </select>
   </div>
 
-  <button class="button" type="submit">Submit</button>
+  <button class="button ml-5" type="submit">Submit</button>
 
 </form>

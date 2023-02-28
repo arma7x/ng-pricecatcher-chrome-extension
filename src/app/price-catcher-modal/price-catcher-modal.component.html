@@ -4,7 +4,7 @@
 
       <div class="form-container">
         <app-region-tree-form [regionTree]="regionTree" (onSubmit)="getPriceList($event)"></app-region-tree-form>
-        <div *ngIf="item != null">{{ item.item }} - {{ item.unit }}</div>
+        <div class="ml-5" *ngIf="item != null">{{ item.item }} - {{ item.unit }}</div>
       </div>
 
       <table>
