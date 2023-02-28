@@ -1,32 +1,33 @@
 <div>
   <div class="modal" *ngIf="visibility" (click)="hideModal()">
     <div class="body" (click)="stopPropagation($event)">
-      <form class="row" [formGroup]="statesTreeForm" (ngSubmit)="getPriceList($event)">
 
-        <div>
-          <select id="state" formControlName="state" (change)="onChangeState($event.target)">
-            <option value="">Pilih Negeri</option>
-            <option *ngFor="let state of statesTree | keyvalue" [ngValue]="state.key">{{ state.key }}</option>
-          </select>
-        </div>
+      <div class="form-container">
+        <form class="row" [formGroup]="statesTreeForm" (ngSubmit)="getPriceList($event)">
+          <div>
+            <select id="state" formControlName="state" (change)="onChangeState($event.target)">
+              <option value="">Pilih Negeri</option>
+              <option *ngFor="let state of statesTree | keyvalue" [ngValue]="state.key">{{ state.key }}</option>
+            </select>
+          </div>
 
-        <div *ngIf="statesTreeForm.value.state != ''">
-          <select id="district" formControlName="district" (change)="onChangeDistrict($event.target)">
-            <option value="">Pilih Daerah</option>
-            <option *ngFor="let district of statesTree[statesTreeForm.value.state || ''] | keyvalue" [ngValue]="district.key">{{ district.key }}</option>
-          </select>
-        </div>
+          <div *ngIf="statesTreeForm.value.state != ''">
+            <select id="district" formControlName="district" (change)="onChangeDistrict($event.target)">
+              <option value="">Pilih Daerah</option>
+              <option *ngFor="let district of statesTree[statesTreeForm.value.state || ''] | keyvalue" [ngValue]="district.key">{{ district.key }}</option>
+            </select>
+          </div>
 
-        <div *ngIf="statesTreeForm.value.state != '' && statesTreeForm.value.district != ''">
-          <select id="premise_type" formControlName="premise_type">
-            <option value="">Pilih Jenis Premis</option>
-            <option *ngFor="let premise_type of statesTree[statesTreeForm.value.state || ''][statesTreeForm.value.district || '']" [ngValue]="premise_type">{{ premise_type }}</option>
-          </select>
-        </div>
+          <div *ngIf="statesTreeForm.value.state != '' && statesTreeForm.value.district != ''">
+            <select id="premise_type" formControlName="premise_type">
+              <option value="">Pilih Jenis Premis</option>
+              <option *ngFor="let premise_type of statesTree[statesTreeForm.value.state || ''][statesTreeForm.value.district || '']" [ngValue]="premise_type">{{ premise_type }}</option>
+            </select>
+          </div>
 
-        <button class="button" type="submit">Submit</button>
-
-      </form>
+          <button class="button" type="submit">Submit</button>
+        </form>
+      </div>
 
       <table>
         <thead>
@@ -48,6 +49,7 @@
           </tr>
         </tbody>
       </table>
+
     </div>
   </div>
 </div>

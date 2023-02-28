@@ -1,1 +1,21 @@
-@use '../base';
+.container {
+  .form-container {
+    position: fixed;
+    top: 0;
+    height: 40px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 5px;
+  }
+
+  table {
+    margin: 5px;
+    margin-top: 45px;
+    width: calc(100% - 10px);
+  }
+
+  table th {
+    position: sticky;
+    top: 40px;
+  }
+}
