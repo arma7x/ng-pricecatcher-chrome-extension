@@ -71,20 +71,22 @@ export class PriceCatcherModalComponent implements OnInit {
       where_stmt.push(`premises.premise_type='${premise_type}'`);
     }
     let order_stmt = "ORDER BY prices.price ASC";
-    const result = this.db.exec([select_stmt, join_stmt.join(" "), where_stmt.join(" AND "), order_stmt].join(' '));
 
     this.priceList = [];
-    let tempPriceList: Array<PriceRow> = [];
-    if (result.length > 0) {
-      result[0].values.forEach((row: any[]) => {
-        let temp: { [key: string]: any } = {};
-        result[0].columns.forEach((key: any, index: number) => {
-          temp[key] = row[index];
+    setTimeout(() => {
+      const result = this.db.exec([select_stmt, join_stmt.join(" "), where_stmt.join(" AND "), order_stmt].join(' '));
+      let tempPriceList: Array<PriceRow> = [];
+      if (result.length > 0) {
+        result[0].values.forEach((row: any[]) => {
+          let temp: { [key: string]: any } = {};
+          result[0].columns.forEach((key: any, index: number) => {
+            temp[key] = row[index];
+          });
+          tempPriceList.push(temp as PriceRow);
         });
-        tempPriceList.push(temp as PriceRow);
-      });
-    }
-    this.priceList = [...tempPriceList];
+      }
+      this.priceList = [...tempPriceList];
+    }, 200);
 
     console.log(this.priceList);
   }

@@ -43,19 +43,22 @@ export class PriceCatcherComponent implements OnInit {
     if (evt.item_category != null && evt.item_category != "") {
       where_stmt.push(`item_category='${evt.item_category}'`);
     }
+
     this.items = [];
-    let tempItems: Array<ItemRow> = [];
-    const result = this.db.exec([select_stmt, where_stmt.join(" AND ")].join(' '));
-    if (result.length > 0) {
-      result[0].values.forEach((row: any[]) => {
-        let temp: { [key: string]: any } = {};
-        result[0].columns.forEach((key: any, index: number) => {
-          temp[key] = row[index];
+    setTimeout(() => {
+      let tempItems: Array<ItemRow> = [];
+      const result = this.db.exec([select_stmt, where_stmt.join(" AND ")].join(' '));
+      if (result.length > 0) {
+        result[0].values.forEach((row: any[]) => {
+          let temp: { [key: string]: any } = {};
+          result[0].columns.forEach((key: any, index: number) => {
+            temp[key] = row[index];
+          });
+          tempItems.push(temp as ItemRow);
         });
-        tempItems.push(temp as ItemRow);
-      });
-    }
-    this.items = [...tempItems];
+      }
+      this.items = [...tempItems];
+    }, 200);
   }
 
   async initialize() {
