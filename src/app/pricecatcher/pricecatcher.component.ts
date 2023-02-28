@@ -35,6 +35,8 @@ export class PriceCatcherComponent implements OnInit {
   }
 
   filterItems(evt: SubmitGroupCategoryFormEvent): void {
+    if (this.db == null)
+      return
     let select_stmt = "SELECT * FROM items";
     let where_stmt = ["WHERE NOT item_code=-1"];
     if (evt.item_group != null && evt.item_group != "") {

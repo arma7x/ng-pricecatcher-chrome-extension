@@ -34,7 +34,9 @@ export class PremiseComponent implements OnInit {
     this.refPremiseModal.showModal(premise);
   }
 
-  async getPremises(evt: SubmitRegionTreeFormEvent) {
+  async filterPremises(evt: SubmitRegionTreeFormEvent) {
+    if (this.db == null)
+      return
     let select_stmt = "SELECT * from premises";
     let where_stmt = ["WHERE NOT premise_code=-1"];
     if (evt.state != null && evt.state != "") {
