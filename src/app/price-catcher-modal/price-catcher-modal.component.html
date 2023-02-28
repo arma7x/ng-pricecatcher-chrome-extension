@@ -3,25 +3,25 @@
     <div class="body" (click)="stopPropagation($event)">
 
       <div class="form-container">
-        <form class="row" [formGroup]="statesTreeForm" (ngSubmit)="getPriceList($event)">
+        <form class="row" [formGroup]="regionTreeForm" (ngSubmit)="getPriceList($event)">
           <div>
             <select id="state" formControlName="state" (change)="onChangeState($event.target)">
               <option value="">Pilih Negeri</option>
-              <option *ngFor="let state of statesTree | keyvalue" [ngValue]="state.key">{{ state.key }}</option>
+              <option *ngFor="let state of regionTree | keyvalue" [ngValue]="state.key">{{ state.key }}</option>
             </select>
           </div>
 
-          <div *ngIf="statesTreeForm.value.state != ''">
+          <div *ngIf="regionTreeForm.value.state != ''">
             <select id="district" formControlName="district" (change)="onChangeDistrict($event.target)">
               <option value="">Pilih Daerah</option>
-              <option *ngFor="let district of statesTree[statesTreeForm.value.state || ''] | keyvalue" [ngValue]="district.key">{{ district.key }}</option>
+              <option *ngFor="let district of regionTree[regionTreeForm.value.state || ''] | keyvalue" [ngValue]="district.key">{{ district.key }}</option>
             </select>
           </div>
 
-          <div *ngIf="statesTreeForm.value.state != '' && statesTreeForm.value.district != ''">
+          <div *ngIf="regionTreeForm.value.state != '' && regionTreeForm.value.district != ''">
             <select id="premise_type" formControlName="premise_type">
               <option value="">Pilih Jenis Premis</option>
-              <option *ngFor="let premise_type of statesTree[statesTreeForm.value.state || ''][statesTreeForm.value.district || '']" [ngValue]="premise_type">{{ premise_type }}</option>
+              <option *ngFor="let premise_type of regionTree[regionTreeForm.value.state || ''][regionTreeForm.value.district || '']" [ngValue]="premise_type">{{ premise_type }}</option>
             </select>
           </div>
 

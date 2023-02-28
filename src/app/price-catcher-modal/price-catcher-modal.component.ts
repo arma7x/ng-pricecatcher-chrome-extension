@@ -10,12 +10,12 @@ import { ItemRow, PriceRow } from '../types';
 export class PriceCatcherModalComponent implements OnInit {
 
   @Input() db: any;
-  @Input() statesTree: { [key: string]: { [key: string]: Array<string>; }; } = {};
+  @Input() regionTree: { [key: string]: { [key: string]: Array<string>; }; } = {};
   item!: ItemRow | null;
   priceList: Array<PriceRow> = [];
   visibility: boolean = false;
 
-  statesTreeForm = this.formBuilder.group({
+  regionTreeForm = this.formBuilder.group({
     state: '',
     district: '',
     premise_type: ''
@@ -38,12 +38,12 @@ export class PriceCatcherModalComponent implements OnInit {
   }
 
   onChangeState(evt: EventTarget | null): void {
-    this.statesTreeForm.controls['district'].setValue('');
-    this.statesTreeForm.controls['premise_type'].setValue('');
+    this.regionTreeForm.controls['district'].setValue('');
+    this.regionTreeForm.controls['premise_type'].setValue('');
   }
 
   onChangeDistrict(evt: EventTarget | null): void {
-    this.statesTreeForm.controls['premise_type'].setValue('');
+    this.regionTreeForm.controls['premise_type'].setValue('');
   }
 
   stopPropagation(evt: any) {
@@ -55,9 +55,9 @@ export class PriceCatcherModalComponent implements OnInit {
     if (this.item == null)
       return;
     let item_code = this.item.item_code;
-    let state = this.statesTreeForm.value.state;
-    let district = this.statesTreeForm.value.district;
-    let premise_type = this.statesTreeForm.value.premise_type;
+    let state = this.regionTreeForm.value.state;
+    let district = this.regionTreeForm.value.district;
+    let premise_type = this.regionTreeForm.value.premise_type;
     let select_stmt = "SELECT prices.date as last_update, prices.price, premises.* FROM items";
     let join_stmt = ["LEFT JOIN prices ON prices.item_code = items.item_code", "LEFT JOIN premises ON premises.premise_code = prices.premise_code"];
     var where_stmt = ["WHERE NOT items.item_code=-1", "prices.price IS NOT NULL", "premises.premise_code IS NOT NULL", `items.item_code=${item_code}`];

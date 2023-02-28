@@ -14,7 +14,7 @@ export class PriceCatcherComponent implements OnInit {
   items: Array<ItemRow> = [];
   itemGroup: Array<string> = [];
   itemCategory: Array<string> = [];
-  statesTree: { [key: string]: { [key: string]: Array<string>; }; } = {};
+  regionTree: { [key: string]: { [key: string]: Array<string>; }; } = {};
   @ViewChild('refPriceCatcherModal') refPriceCatcherModal: any;
 
   constructor(private zone: NgZone, private router: Router, private database: DatabaseService) { }
@@ -74,12 +74,12 @@ export class PriceCatcherComponent implements OnInit {
       const states = this.db.exec("SELECT state, district, premise_type FROM premises WHERE NOT premise_code=-1 GROUP BY state, district, premise_type ORDER BY state ASC, district ASC, premise_type ASC;");
       for (let key in states[0].values) {
         let [state, district, type] = states[0].values[key];
-        if (this.statesTree[state] == null)
-          this.statesTree[state] = {};
-        if (this.statesTree[state][district] == null)
-          this.statesTree[state][district] = [];
-        if (this.statesTree[state][district].indexOf(type) < 0)
-          this.statesTree[state][district].push(type);
+        if (this.regionTree[state] == null)
+          this.regionTree[state] = {};
+        if (this.regionTree[state][district] == null)
+          this.regionTree[state][district] = [];
+        if (this.regionTree[state][district].indexOf(type) < 0)
+          this.regionTree[state][district].push(type);
       }
 
     } catch (err) {
