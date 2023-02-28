@@ -15,13 +15,7 @@ export class PriceCatcherModalComponent implements OnInit {
   priceList: Array<PriceRow> = [];
   visibility: boolean = false;
 
-  regionTreeForm = this.formBuilder.group({
-    state: '',
-    district: '',
-    premise_type: ''
-  });
-
-  constructor(private formBuilder: FormBuilder) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -37,27 +31,17 @@ export class PriceCatcherModalComponent implements OnInit {
     this.priceList = [];
   }
 
-  onChangeState(evt: EventTarget | null): void {
-    this.regionTreeForm.controls['district'].setValue('');
-    this.regionTreeForm.controls['premise_type'].setValue('');
-  }
-
-  onChangeDistrict(evt: EventTarget | null): void {
-    this.regionTreeForm.controls['premise_type'].setValue('');
-  }
-
   stopPropagation(evt: any) {
     evt.stopPropagation();
   }
 
   getPriceList(evt: any): void {
-    this.stopPropagation(evt);
     if (this.item == null)
       return;
     let item_code = this.item.item_code;
-    let state = this.regionTreeForm.value.state;
-    let district = this.regionTreeForm.value.district;
-    let premise_type = this.regionTreeForm.value.premise_type;
+    let state = evt.state;
+    let district = evt.district;
+    let premise_type = evt.premise_type;
     let select_stmt = "SELECT prices.date as last_update, prices.price, premises.* FROM items";
     let join_stmt = ["LEFT JOIN prices ON prices.item_code = items.item_code", "LEFT JOIN premises ON premises.premise_code = prices.premise_code"];
     var where_stmt = ["WHERE NOT items.item_code=-1", "prices.price IS NOT NULL", "premises.premise_code IS NOT NULL", `items.item_code=${item_code}`];
@@ -87,8 +71,6 @@ export class PriceCatcherModalComponent implements OnInit {
       }
       this.priceList = [...tempPriceList];
     }, 200);
-
-    console.log(this.priceList);
   }
 
 }

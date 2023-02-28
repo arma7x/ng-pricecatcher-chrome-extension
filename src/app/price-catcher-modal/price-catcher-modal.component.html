@@ -3,30 +3,7 @@
     <div class="content" (click)="stopPropagation($event)">
 
       <div class="form-container">
-        <form class="row" [formGroup]="regionTreeForm" (ngSubmit)="getPriceList($event)">
-          <div>
-            <select id="state" formControlName="state" (change)="onChangeState($event.target)">
-              <option value="">Pilih Negeri</option>
-              <option *ngFor="let state of regionTree | keyvalue" [ngValue]="state.key">{{ state.key }}</option>
-            </select>
-          </div>
-
-          <div *ngIf="regionTreeForm.value.state != ''">
-            <select id="district" formControlName="district" (change)="onChangeDistrict($event.target)">
-              <option value="">Pilih Daerah</option>
-              <option *ngFor="let district of regionTree[regionTreeForm.value.state || ''] | keyvalue" [ngValue]="district.key">{{ district.key }}</option>
-            </select>
-          </div>
-
-          <div *ngIf="regionTreeForm.value.state != '' && regionTreeForm.value.district != ''">
-            <select id="premise_type" formControlName="premise_type">
-              <option value="">Pilih Jenis Premis</option>
-              <option *ngFor="let premise_type of regionTree[regionTreeForm.value.state || ''][regionTreeForm.value.district || '']" [ngValue]="premise_type">{{ premise_type }}</option>
-            </select>
-          </div>
-
-          <button class="button" type="submit">Submit</button>
-        </form>
+        <app-region-tree-form [regionTree]="regionTree" (onSubmit)="getPriceList($event)"></app-region-tree-form>
       </div>
 
       <table>
