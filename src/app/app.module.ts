@@ -9,9 +9,9 @@ import { PriceCatcherComponent } from './pricecatcher/pricecatcher.component';
 import { PremiseComponent } from './premise/premise.component';
 
 import { DatabaseService } from './database.service';
-import { GroupCategoryFormComponent } from './group-category-form/group-category-form.component';
 import { PriceCatcherModalComponent } from './price-catcher-modal/price-catcher-modal.component';
-import { RegionTreeFormComponent } from './region-tree-form/region-tree-form.component';
+import { GroupCategoryFormComponent } from './widgets/group-category-form/group-category-form.component';
+import { RegionTreeFormComponent } from './widgets/region-tree-form/region-tree-form.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +19,8 @@ import { RegionTreeFormComponent } from './region-tree-form/region-tree-form.com
     PopupComponent,
     PriceCatcherComponent,
     PremiseComponent,
-    GroupCategoryFormComponent,
     PriceCatcherModalComponent,
+    GroupCategoryFormComponent,
     RegionTreeFormComponent
   ],
   imports: [
