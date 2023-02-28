@@ -9,7 +9,7 @@
   max-height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
 
-  .body {
+  .content {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -17,7 +17,6 @@
     max-height: 90vh;
     background-color: #ffffff;
     overflow-y: auto;
-    border-radius: 5px;
 
     .form-container {
       position: absolute;
