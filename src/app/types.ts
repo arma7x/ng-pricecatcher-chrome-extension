@@ -27,3 +27,12 @@ export interface PriceRow {
   state: string,
   district: string,
 }
+
+export interface PremiseRow {
+  premise_code: number,
+  premise: string,
+  address: string,
+  premise_type: string,
+  state: string,
+  district: string,
+}

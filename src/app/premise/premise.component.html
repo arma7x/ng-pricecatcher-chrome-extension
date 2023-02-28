@@ -1,4 +1,29 @@
-<p>premise works!</p>
-<div>
-  <button (click)="getPremises()">Test get premises</button>
+<div class="container">
+  <div class="form-container">
+    <app-region-tree-form [regionTree]="regionTree" (onSubmit)="getPremises($event)"></app-region-tree-form>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Kod Premise</th>
+        <th>Nama</th>
+        <th>Jenis</th>
+        <th>Alamat</th>
+        <th>Daerah</th>
+        <th>Negeri</th>
+        <th>Menu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let premise of premises">
+        <td>{{ premise.premise_code }}</td>
+        <td>{{ premise.premise }}</td>
+        <td>{{ premise.premise_type }}</td>
+        <td>{{ premise.address }}</td>
+        <td>{{ premise.district }}</td>
+        <td>{{ premise.state }}</td>
+        <td><button type="button" (click)="showItemList(premise)">Senarai Barang</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
