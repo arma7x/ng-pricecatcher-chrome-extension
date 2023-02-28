@@ -3,6 +3,12 @@ export interface SubmitGroupCategoryFormEvent {
   item_category: string,
 }
 
+export interface SubmitRegionTreeFormEvent {
+  state: string,
+  district: string,
+  premise_type: string,
+}
+
 export interface ItemRow {
   item_code: number,
   item: string,

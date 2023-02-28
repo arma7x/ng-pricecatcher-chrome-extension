@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ItemRow, PriceRow } from '../types';
+import { ItemRow, PriceRow, SubmitRegionTreeFormEvent } from '../types';
 
 @Component({
   selector: 'app-price-catcher-modal',
@@ -35,7 +35,7 @@ export class PriceCatcherModalComponent implements OnInit {
     evt.stopPropagation();
   }
 
-  getPriceList(evt: any): void {
+  getPriceList(evt: SubmitRegionTreeFormEvent): void {
     if (this.item == null)
       return;
     let item_code = this.item.item_code;
